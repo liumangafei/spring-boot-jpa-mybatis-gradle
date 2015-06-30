@@ -1,8 +1,8 @@
 package com.mm.dev.service.impl;
 
 import com.mm.dev.dao.jpa.UserDao;
-import com.mm.dev.entity.User;
 import com.mm.dev.dao.mapper.UserMapper;
+import com.mm.dev.entity.User;
 import com.mm.dev.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -29,6 +29,7 @@ public class UserServiceImpl implements UserService {
         return userDao.getOne(id);
     }
 
+    @Override
     public Page<User> getAll(Pageable pageable){
         return userDao.findAll(pageable);
     }
@@ -53,7 +54,7 @@ public class UserServiceImpl implements UserService {
 
         userDao.save(user);
 
-        throw new RuntimeException("保存异常！");
+//        throw new RuntimeException("保存异常！");
     }
 
     @Transactional
@@ -64,9 +65,9 @@ public class UserServiceImpl implements UserService {
         user.setUsername("8");
         user.setPassword("8");
 
-        userDao.save(user);
+        userMapper.save(user);
 
-//        throw new RuntimeException("保存异常！");
+        throw new RuntimeException("保存异常！");
     }
 
 }

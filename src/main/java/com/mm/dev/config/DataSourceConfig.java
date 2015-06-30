@@ -16,13 +16,10 @@ import org.springframework.core.env.Environment;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.core.io.support.ResourcePatternResolver;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
-import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
-import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.util.StringUtils;
 
-import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 import java.util.Properties;
 
@@ -101,16 +98,9 @@ public class DataSourceConfig {
         return entityManagerFactory;
     }
 
-    @Bean(name = "txManager")
+    @Bean
     public DataSourceTransactionManager transactionManager(DataSource dataSource){
         return new DataSourceTransactionManager(dataSource);
     }
-
-//    @Bean(name = "txManager")
-//    public PlatformTransactionManager transactionManager(EntityManagerFactory entityManagerFactory){
-//        JpaTransactionManager transactionManager = new JpaTransactionManager();
-//        transactionManager.setEntityManagerFactory(entityManagerFactory);
-//        return transactionManager;
-//    }
 
 }

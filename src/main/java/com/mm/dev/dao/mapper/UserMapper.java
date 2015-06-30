@@ -16,4 +16,6 @@ public interface UserMapper {
 
     Page<User> getUserAll(@Param("pageable")Pageable pageable);
 
+    void save(User user);
+
 }

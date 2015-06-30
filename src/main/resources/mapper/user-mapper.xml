@@ -24,4 +24,8 @@
         from user
     </select>
 
+    <insert id="save">
+        INSERT INTO user (username, password) VALUES (#{username}, #{password})
+    </insert>
+
 </mapper>

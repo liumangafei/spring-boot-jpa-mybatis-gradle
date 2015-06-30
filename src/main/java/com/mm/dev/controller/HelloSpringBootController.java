@@ -26,11 +26,10 @@ public class HelloSpringBootController {
     @Autowired
     private UserService userService;
 
+    @Transactional
     @RequestMapping("/")
     @ResponseBody
     public String sayHello(Pageable pageable){
-
-
 
         Page<User> all = userService.getAll(pageable);
 

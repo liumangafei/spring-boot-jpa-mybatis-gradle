@@ -32,14 +32,21 @@ public class PaginationStatementInterceptor implements Interceptor {
         StatementHandler statementHandler = (StatementHandler) invocation.getTarget();
 
         ParameterHandler parameterHandler = statementHandler.getParameterHandler();
-        MapperMethod.ParamMap parameterObject = (MapperMethod.ParamMap) parameterHandler.getParameterObject();
+        Object parameterObject = parameterHandler.getParameterObject();
 
         Pageable pagination = null;
-        if(parameterObject != null){
-            for(Object key : parameterObject.keySet()){
-                if(parameterObject.get(key) instanceof  Pageable){
-                    pagination = (Pageable) parameterObject.get(key);
-                    break;
+
+        if(parameterObject instanceof MapperMethod.ParamMap){
+
+            MapperMethod.ParamMap paramMapObject = (MapperMethod.ParamMap)parameterObject ;
+
+
+            if(paramMapObject != null){
+                for(Object key : paramMapObject.keySet()){
+                    if(paramMapObject.get(key) instanceof  Pageable){
+                        pagination = (Pageable) paramMapObject.get(key);
+                        break;
+                    }
                 }
             }
         }
